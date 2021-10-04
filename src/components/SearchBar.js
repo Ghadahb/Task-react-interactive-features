@@ -1,14 +1,14 @@
 import React from "react";
 // Styling
 
-
-const SearchBar = (props) => {
+export default function SearchBar(props) {
   return (
-    <input className="searchBar"
-      onChange={(event) => console.log(event.target.value)}
-      placeholder="Search for a cookie name"
-    />
+    <div>
+      <input
+        className="searchBar"
+        placeholder="Search for a cookie name"
+        onChange={(event) => props.setQuery(event.target.value)}
+      />
+    </div>
   );
-};
-
-export default SearchBar;
+}

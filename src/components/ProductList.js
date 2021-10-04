@@ -3,18 +3,18 @@ import ProductItem from "./ProductItem";
 import SearchBar from "./SearchBar";
 // Data
 import products from "../products";
+import { useState } from "react";
 
-const ProductList = () => {
-  const productList = products.map((product) => (
-    <ProductItem product={product} key={product.id} />
-  ));
+export default function ProductList() {
+  const [query, setQuery] = useState("");
+  const productArray = products
+    .filter((product) => product.name.includes(query))
+    .map((product) => <ProductItem product={product} key={product.id} />);
 
   return (
-    <>
-      <SearchBar />
-      <div className="listWrapper">{productList}</div>
-    </>
+    <div>
+      <SearchBar setQuery={setQuery} />
+      <div calssName="productlist">{productArray}</div>
+    </div>
   );
-};
-
-export default ProductList;
+}
